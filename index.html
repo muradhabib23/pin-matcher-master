@@ -18,7 +18,7 @@
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input id="inputDisplay" class="form-control" type="text">
+                    <input id="inputDisplay" class="form-control text-center" type="text">
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
@@ -56,7 +56,7 @@
     </div>
 
     <script>
-        //Pin Generate
+        //Pin Generate button for random number
         var pinGenarate = document.getElementById('pinGenerate').addEventListener('click',function(){
             var getPin = document.getElementById('getPin').value = Math.floor(1000 + Math.random() * 9000);
         })
@@ -69,14 +69,19 @@
                 var btnClicked = event.target;
                 var inputDisplay = document.getElementById('inputDisplay');
 
+               //for backspace button 
                if(btnClicked.innerText == '<'){
-                document.getElementById('inputDisplay').value=inputDisplay.substring(0,inputDisplay.length -1);
+                var backSpace = inputDisplay.value;
+                var backSpaceNew = backSpace.substring(0,inputDisplay.length -1);
+                inputDisplay.value = backSpaceNew;
                }
 
+               //for all clear
                else if(btnClicked.innerText == 'C'){
                 inputDisplay.value= "";
                }
 
+               //for only numbers
                else{
                    inputDisplay.value += btnClicked.innerText;
                }
@@ -106,7 +111,8 @@
             else if(inputDisplay.value == ''){
                 alert('Please insert pin');
             }
-
+            
+            //if pin does not match then for pop up and left chances and btn disable
             else if(pinGenarate.value != inputDisplay.value ){
                 unmatchedNotification.style.display = 'block';
                 //chance left
@@ -120,7 +126,7 @@
             }
 
             else{
-                matchedNotification.style.display = 'block'
+                matchedNotification.style.display = 'block';
                 inputDisplay.value = '';
             }
         })
